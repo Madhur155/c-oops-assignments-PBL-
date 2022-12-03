@@ -29,10 +29,10 @@ int hospital::doctor=50;
 
 class patient:public hospital
     {
+    public:
     string name,add;
     int no,id;
     int x;
-    public:
     // patient()
     // {
     //     name="NULL";
@@ -48,15 +48,15 @@ class patient:public hospital
     //     id=0;
     // }
     void enterdata(int patient_no){
-        cout<<"enter patients name";
+        cout<<"enter patients name ";
         cin>>name;
-        cout<<"enter patient address";
+        cout<<"enter patient address ";
         cin>>add;
-        cout<<"enter patients number";
+        cout<<"enter patients number ";
         cin>>no;
         id = patient_no;
         cout<<"Do you want to admit the patient or do general check up";
-        cout<<"\n enter 1 for admit and 2 for check up";
+        cout<<"\n enter 1 for admit and 2 for check up ";
         cin>>x;
         if(x==1){
             admit();

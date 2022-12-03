@@ -1,5 +1,5 @@
 // Set A of customers like pizza and set B of customers like a burger. Write a C + +program to store two
-// sets using an array. compute and displaya Set of customers who like either pizza or burger or both
+// sets using an array. compute and display a Set of customers who like either pizza or burger or both
 // b Set of customers who like both pizza and burger.
 // c Set of customers who like only pizza, not burger.d
 // Set of customers who like only burger not pizza.
