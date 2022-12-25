@@ -46,78 +46,77 @@ class employee{
     }
 };
 
+void DeleteExistingFile(){
+    remove("mad");
+}
 
 void writerecord()
 {
     employee obj;
     obj.read();
    
-    ofstream outfile;
-    outfile.open("mad",ios::binary | ios::in);
-    outfile.write((char*)&obj,sizeof(obj));
-    outfile.close();
+    ofstream fout;
+    fout.open("mad",ios::binary | ios::app);
+    fout.write((char*)&obj,sizeof(obj));
+    fout.close();
 }
 
 
 void displaydata()
 {
     employee  obj;
-    ifstream infile;
-    infile.open("mad",ios::binary);
+    ifstream fin;
+    fin.open("mad",ios::binary);
    
-    while(infile.read((char*)&obj,sizeof(obj)))
+    while(fin.read((char *)&obj,sizeof(obj)))
     {
         obj.display();
     }
-    infile.close();
+    fin.close();
 }
 
 void search(int n){
     employee obj;
-    ifstream infile;
-    infile.open("mad", ios::binary);
+    ifstream fin;
+    fin.open("mad", ios::binary);
    
-    while(infile.read((char *)&obj,sizeof(obj)))
+    while(fin.read((char *)&obj,sizeof(obj)))
     {
         if(n == obj.getid()){
         obj.display();
         }
     }
-    infile.close();
+    fin.close();
 }
 
 void modify_record(int n)
 {
-    // ifstream infile;
-    // ofstream outfile;
-    // infile.open("mad",ios::in | ios::out);
-    // outfile.open("mad",ios::binary | ios::app);
-    fstream file;
-    file.open("mad",ios::in | ios::out);
-
     employee obj;
+    fstream file;
+    file.open("mad",ios::ate| ios::in| ::ios::out| ios::binary);
 
+
+    file.seekg(0);
     while(file.read((char*)&obj, sizeof(obj)))
     {
         if(obj.getid() == n)
         {
             cout << "\nEnter the new details of student";
-            obj.display();
+            obj.read();
             
-            long long int pos = -1 * sizeof(obj);
-            file.seekg(pos, ios::cur);
+            long long int pos = ((-1) * sizeof(obj));
+            file.seekp(pos, ios::cur);
 			
             file.write((char*)&obj, sizeof(obj));
         }
     }
-  
     file.close();
 }
 
 int main()
-{   int ch, no1, no2;
-    // char name[20];
-    employee obj[5];
+{   int ch, no1;
+    DeleteExistingFile();
+    // employee obj[5];
     do{
     cout<<"\nenter choice 1.read 2.display 3.serach 4.modify";
     cin>>ch;
@@ -140,12 +139,17 @@ int main()
         break;
         
         case 4:
+        int no2;
         cout<<"enter the id which you want to modify";
         cin>>no2;
         modify_record(no2);
         break;
+
+        default:
+        cout<<"Enter valid choice"<<endl;
+        break;
     }
-    }while(ch!=0);
+    }while(1);
    
 
     return 0;
