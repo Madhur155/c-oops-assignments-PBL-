@@ -15,22 +15,14 @@ class node
 
 public:
     int status;
-
     int seatNo;
-
     node *prev;
-
     node *next;
-
     node(int No, int sts)
     {
-
         status = sts;
-
         seatNo = No;
-
         next = NULL;
-
         prev = NULL;
     }
 };
@@ -58,83 +50,46 @@ void show::create()
     for (int i = 2; i <= 150; i++)
     {
         node *p;
-
         p = new node(i, 0);
-
         tail->next = p;
-
         p->prev = tail;
-
         tail = p;
-
         tail->next = head;
-
         head->prev = tail;
     }
 }
-void
-
-show::display()
+void show::display()
 {
-
     {
-
         int r = 1;
-
         node *temp;
-
         temp = head;
-
         int count = 0;
-
         cout << "Check Below Seats" << endl;
-
         while (temp->next != head)
-
         {
-
             if (temp->seatNo / 10 == 0)
-
                 cout << "00" << temp->seatNo << " :";
-
             else if (temp->seatNo / 100 == 0)
-
                 cout << "0" << temp->seatNo << " :";
-
             else
-
                 cout << "" << temp->seatNo << " :";
-
             if (temp->status == 0)
-
                 cout << "| | ";
-
             else
-
                 cout << "|B| ";
-
             count++;
-
             if (count % 10 == 0)
-
             {
-
                 cout << endl;
-
                 r++;
             }
-
             temp = temp->next;
         }
-
         cout << temp->seatNo << " :";
-
         if (temp->status == 0)
-
             cout << "| | ";
-
         else
-
             cout << "|B| ";
     }
 }
@@ -143,234 +98,135 @@ void show::book()
 {
     int x;
     string y;
-
 label:
     cout << "\n\n\nEnter seat number to be booked\n";
-
     cin >> x;
-
     if (x < 1 && x > 150)
-
     {
-
         cout << "Enter correct seat number to book (1-70)\n";
-
         goto label;
     }
-
     node *temp;
-
     temp = new node(200, 0);
-
     temp = head;
-
     while (temp->seatNo != x)
-
     {
-
         temp = temp->next;
     }
-
     if (temp->status == 1)
-
         cout << "Seat already booked!\n";
-
     else
-
     {
-
         temp->status = 1;
-
         cout << "Seat " << x << " booked!\n";
     }
 }
 
 void show::cancel()
 {
-
     int x;
-
     string y;
-
 label1:
     cout << "Enter seat number to cancel booking\n";
-
     cin >> x;
-
     if (x < 1 && x > 150)
-
     {
-
         cout << "Enter correct seat number to cancel (1-150)\n";
         goto label1;
     }
-
     node *temp;
-
     temp = new node(200, 1);
-
     temp = head;
-
     while (temp->seatNo != x)
-
     {
-
         temp = temp->next;
     }
-
     if (temp->status == 0)
-
     {
-
         cout << "Seat not booked yet!!\n";
     }
-
     else
-
     {
-
         if (temp->seatNo == x)
-
         {
-
             temp->status = 0;
-
             cout << "Seat Cancelled!\n";
         }
-
         else
-
             cout << "Wrong User ID !!! Seat cannot be cancelled!!!\n";
     }
 }
 
 void show::chkAvail()
 {
-
     int r = 1;
-
     node *temp;
-
     temp = head;
-
     int count = 0;
-
     cout << "\n\n\n";
-
     cout << "Check out below seats" << endl;
-
     while (temp->next != head)
-
     {
-
         {
-
             if (temp->seatNo / 10 == 0)
-
                 cout << "00" << temp->seatNo << " :";
-
             else if (temp->seatNo / 100 == 0)
-
                 cout << "0" << temp->seatNo << " :";
-
             else
-
                 cout << "" << temp->seatNo << " :";
-
             if (temp->status == 0)
-
                 cout << "| | ";
-
             else if (temp->status == 1)
-
                 cout << "|B|" <<" ";
-
             count++;
             if (count % 10 == 0)
-
             {
-
                 cout << endl;
             }
         }
-
         temp = temp->next;
     }
-
     if (temp->status == 0)
-
     {
-
         cout << temp->seatNo << " :";
-
         if (temp->status == 0)
-
             cout << "| | ";
     }
 }
 
 int main()
 {
-
     show obj;
-
     obj.create();
-
     int ch;
-
     char c = 'y';
-
     while (c == 'y')
-
     {
-
         obj.display();
-
         cout << "\nMOVIE THEATRE\n";
-
         cout << "***************\n";
-
         cout << "\nEnter Choice\nEnter 1 to check current SeatStatus\nEnter 2 to Book Seat \nEnter 3 to check AvailableSeat\nEnter 4 to CancelSeat\n";
-
         cin >> ch;
-
         switch (ch)
-
         {
-
         case 1:
-
             obj.display();
-
             break;
-
         case 2:
-
             obj.book();
-
             break;
-
         case 3:
-
             obj.chkAvail();
-
             break;
-
         case 4:
-
             obj.cancel();
-
             break;
-
         default:
             cout << "Wrong choice input\n";
         }
-
         cout << "\nDo you want to perform any other operation :(y/n)\n";
-
         cin >> c;
     }
-
     return 0;
 }
 
