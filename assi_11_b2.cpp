@@ -49,8 +49,7 @@ void show::create()
     tail = head = temp;
     for (int i = 2; i <= 150; i++)
     {
-        node *p;
-        p = new node(i, 0);
+        node *p = new node(i, 0);
         tail->next = p;
         p->prev = tail;
         tail = p;
@@ -61,9 +60,7 @@ void show::create()
 void show::display()
 {
     {
-        int r = 1;
-        node *temp;
-        temp = head;
+        node *temp = head;
         int count = 0;
         cout << "Check Below Seats" << endl;
         while (temp->next != head)
@@ -74,6 +71,7 @@ void show::display()
                 cout << "0" << temp->seatNo << " :";
             else
                 cout << "" << temp->seatNo << " :";
+
             if (temp->status == 0)
                 cout << "| | ";
             else
@@ -82,7 +80,6 @@ void show::display()
             if (count % 10 == 0)
             {
                 cout << endl;
-                r++;
             }
             temp = temp->next;
         }
@@ -106,9 +103,8 @@ label:
         cout << "Enter correct seat number to book (1-70)\n";
         goto label;
     }
-    node *temp;
-    temp = new node(200, 0);
-    temp = head;
+    // temp = new node(200, 0);
+    node *temp = head;
     while (temp->seatNo != x)
     {
         temp = temp->next;
@@ -135,7 +131,7 @@ label1:
         goto label1;
     }
     node *temp;
-    temp = new node(200, 1);
+    // temp = new node(200, 1);
     temp = head;
     while (temp->seatNo != x)
     {

@@ -93,7 +93,7 @@ void modify_record(int n)
 {
     employee obj;
     fstream file;
-    file.open("mad",ios::ate| ios::in| ::ios::out| ios::binary);
+    file.open("mad",ios::ate| ios::in| ios::out| ios::binary);
 
 
     file.seekg(0);
